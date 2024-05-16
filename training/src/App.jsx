@@ -1,21 +1,32 @@
-import './App.css'
+import { Component } from 'react'
 
-function WhoAmI ({name, surname, link}) {
-	return (
-		<div>
-			<h1>My name is {name.firstName}, surname - {surname}</h1>
-			<a href={link}>My profile</a>
-		</div>
-	)
-}
 
-function App() {
-	return (
-		<div className="App">
-			<WhoAmI name={() => {return 'John'}} surname='Smith' link='facebook.com'/>
-			<WhoAmI name={() => {return 'Alex'}} surname='Shepard' link='vk.com'/>
-		</div>
-	)
-}
+	export default class App extends Component {
+		constructor(props) {
+			super(props);
+			this.state = {
+				years: 27,
+				position: ''
+		}
+	}
 
-export default App;
+		commitInputChanges = (e, color) => {
+			console.log(color);
+			this.setState({
+				position: e.target.value
+			})
+		}
+
+		render() {
+			const {position} = this.state;
+			return (
+				<>
+					<h1>position - {position}</h1>
+					<form action="">
+						<span>Write</span>
+						<input type="text" onInput={(e) => this.commitInputChanges(e, 'some color')} />
+					</form>
+				</>
+			)
+		}
+	}
